@@ -2,7 +2,9 @@ import { Footer as FlowbiteFooter } from "flowbite-react";
 
 const Footer = () => {
   return (
-    <FlowbiteFooter container={true} className="dark:bg-EPIQBlack">
+    <FlowbiteFooter
+      container={true}
+      className="absolute bottom-0">
       <div className="w-full text-center">
         <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
           <FlowbiteFooter.Brand
