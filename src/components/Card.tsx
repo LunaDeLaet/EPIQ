@@ -9,7 +9,7 @@ type Props = {
 
 const Card = ({ headingText, paragraphText, buttonText }: Props) => {
   return (
-    <div className="w-full">
+    <div className="w-72">
       <FlowbiteCard className="h-full">
         <div className="h-full flex flex-col justify-start gap-5">
           <h5 className="text-2xl font-bold text-grey dark:text-white">
