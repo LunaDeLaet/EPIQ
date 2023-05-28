@@ -1,43 +1,52 @@
 import Card from "@/components/Card";
+import { fetchContentfulEntryLinkedEntries } from "../services/contentful/contentful";
+import { LinkedEntry } from "../services/contentful/types";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
-const Home = () => {
+type Props = {
+  cards: any[];
+};
+
+export async function getStaticProps() {
+  const res = await fetchContentfulEntryLinkedEntries(
+    "epiqLandingPage",
+    "EPIQ Landing Page 1"
+  );
+  const cards = res.includes.Entry.filter(
+    (entry: any) => entry.sys?.contentType?.sys?.id === "card"
+  );
+
+  return {
+    props: {
+      cards: cards,
+      // ISR
+      revalidate: 1,
+    },
+  };
+}
+
+const Home = ({ cards }: Props) => {
   return (
     <>
       <div
-        id="grey-block"
+        id="blue-background-block"
         className="bg-blue w-full h-50vh"></div>
       <div
         id="cards-container"
         className="absolute xl:top-1/3 top-1/4 right-0 left-0 h-fit m-auto flex flex-wrap gap-5 justify-center">
-        <Card
-          headingText="Ontdek onze coachings"
-          paragraphText="Als life coach, auticoach en ADHD-coach bied ik diverse coachingstijlen aan die aansluiten bij uw specifieke behoeften. Of het nu gaat om levensdoelen, autisme of ADHD, ik begeleid u graag naar succes."
-          buttonText="Lees meer"
-          // icon={
-          //   <img
-          //     src="/images/life-in-the-balance-svgrepo-com.svg"
-          //     width={75}
-          //     height={75}
-          //   />
-          // }
-        />
-        <Card
-          headingText="Maak een afspraak"
-          paragraphText="Wilt u een afspraak maken? Neem contact op via het formulier hieronder en ik reageer zo snel mogelijk. Samen kunnen we uw doelen bespreken en een op maat gemaakt plan maken."
-          buttonText="Maak een afspraak"
-          // icon={
-          //   <img
-          //     src="/images/calendar.svg"
-          //     width={75}
-          //     height={75}
-          //   />
-          // }
-        />
-        <Card
-          headingText="Over mij en mijn coachingpraktijk"
-          paragraphText="Ik ben .... en ik help mensen hun potentieel te ontdekken. Met ervaring in het begeleiden van mensen met neurodivergentie, bied ik een warme benadering om u te helpen groeien en uw doelen te bereiken. Ontdek meer over mijn praktijk en hoe ik u kan ondersteunen."
-          buttonText="Lees meer"
-        />
+        {cards?.map((cardObject: LinkedEntry) => {
+          const card = cardObject.fields;
+          return (
+            <Card
+              key={card.title}
+              headingText={card.title}
+              paragraphText={
+                documentToReactComponents(card.mainText!) as string
+              }
+              buttonText={card.buttonText as string}
+            />
+          );
+        })}
       </div>
     </>
   );

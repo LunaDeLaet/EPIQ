@@ -15,9 +15,9 @@ const Card = ({ headingText, paragraphText, buttonText }: Props) => {
           <h5 className="text-2xl font-bold text-grey dark:text-white">
             {headingText}
           </h5>
-          <p className="font-normal text-grey dark:text-gray-400">
+          <div className="font-normal text-grey dark:text-gray-400">
             {paragraphText}
-          </p>
+          </div>
           <Button
             color="black"
             className="bg-blue">
