@@ -2,6 +2,7 @@ import Card from "@/components/Card";
 import { fetchContentfulEntryLinkedEntries } from "../services/contentful/contentful";
 import { LinkedEntry } from "../services/contentful/types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { sortLinkedEntriesById } from "@/services/contentful/utils";
 
 type Props = {
   cards: any[];
@@ -16,9 +17,11 @@ export async function getStaticProps() {
     (entry: any) => entry.sys?.contentType?.sys?.id === "card"
   );
 
+  sortLinkedEntriesById(cards);
+
   return {
     props: {
-      cards: cards,
+      cards,
       // ISR
       revalidate: 1,
     },
