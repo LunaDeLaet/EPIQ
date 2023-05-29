@@ -8,7 +8,7 @@ const Header = () => {
       <Navbar>
         <Navbar.Brand
           href="/"
-          className="p-5 text-4xl font-bold text-grey">
+          className="p-5 text-4xl font-bold">
           <Image
             alt="Epiq Logo"
             src="/images/handshake.png"

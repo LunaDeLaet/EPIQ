@@ -4,7 +4,7 @@ import Footer from "./Footer";
 
 const Layout = ({ children }: PropsWithChildren) => {
   return (
-    <div className="bg-EPIQ h-full w-full">
+    <div className="bg-EPIQ h-full w-full text-grey">
       <Header />
       {children}
       {/* <Footer /> */}
