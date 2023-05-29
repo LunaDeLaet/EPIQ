@@ -20,7 +20,7 @@ const Card = ({ headingText, paragraphText, buttonText }: Props) => {
           </div>
           <Button
             color="black"
-            className="bg-blue">
+            className="bg-blue mt-auto">
             {buttonText}
           </Button>
         </div>
