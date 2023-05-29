@@ -11,7 +11,7 @@ const Header = () => {
           className="p-5 text-4xl font-bold">
           <Image
             alt="Epiq Logo"
-            src="/images/handshake.png"
+            src="/images/favicon.png"
             width={50}
             height={50}
             className="p-2"
