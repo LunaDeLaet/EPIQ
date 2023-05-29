@@ -31,9 +31,6 @@ module.exports = {
       height: {
         "50vh": "50vh",
       },
-      minHeight: {
-        "50vh": "50vh",
-      },
     },
   },
   plugins: [require("flowbite/plugin")],

@@ -3,6 +3,7 @@ import { fetchContentfulEntryLinkedEntries } from "../services/contentful/conten
 import { LinkedEntry } from "../services/contentful/types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { sortLinkedEntriesById } from "@/services/contentful/utils";
+import Head from "next/head";
 
 type Props = {
   cards: any[];
@@ -31,12 +32,19 @@ export async function getStaticProps() {
 const Home = ({ cards }: Props) => {
   return (
     <>
+      <Head>
+        <title>Epiq Coaching Center</title>
+        <meta
+          name="viewport"
+          content="initial-scale=1.0, width=device-width"
+        />
+      </Head>
       <div
         id="blue-background-block"
         className="bg-blue w-full h-50vh"></div>
       <div
         id="cards-container"
-        className="absolute xl:top-1/3 top-1/4 right-0 left-0 h-fit m-auto flex flex-wrap gap-5 justify-center">
+        className="absolute top-1/4 right-0 left-0 h-fit m-auto flex flex-wrap gap-5 justify-center">
         {cards?.map((cardObject: LinkedEntry) => {
           const card = cardObject.fields;
           return (
